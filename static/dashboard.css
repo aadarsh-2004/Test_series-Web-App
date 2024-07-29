@@ -1,0 +1,193 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.navbar {
+    background-color: #000000;
+    overflow: hidden;
+    padding: 2px;
+    box-shadow: 0 15px 10px rgba(0, 0, 0, 0.2);
+    height: 65px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer {
+    background-color: #000000;
+    color: #ffffff;
+    align-items: center;
+    text-align: center;
+}
+
+.social-icon {
+    margin: 0 10px; /* Adjust the value to increase/decrease space */
+}
+
+.mainheading {
+    padding-top: 40px;
+    font-weight: bolder;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.baseline {
+    padding-top: 1px;
+    color: #ddddddc3;
+}
+
+.content {
+    font-size: 12px;
+    color: #ddd;
+}
+
+.logo img {
+    max-height: 50px;
+    border-radius: 15px;
+    margin-left: 10px;
+    margin-top: 6px;
+}
+
+.menu {
+    display: flex;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    padding: 15px;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: #00bcd4;
+}
+
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px 0;
+}
+
+/* Section styles */
+section {
+    margin: 20px;
+}
+
+
+
+.active-tests, .calendar, .upcoming-tests {
+    background-color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    opacity: 1; /* Adjust opacity to be fully opaque */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.active-tests h2, .calendar h2, .upcoming-tests h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.activetest-container, .test-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Gap between each test */
+}
+
+.test {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 10px 9px 15px rgba(255, 0, 0, 0.2);
+    margin-bottom: 10px;
+    flex: 0 1 calc(50% - 20px); /* Take half the width of the container, minus the gap */
+    box-sizing: border-box;
+}
+.up_test {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 10px 9px 15px rgba(255, 0, 0, 0.2);
+    margin-bottom: 10px;
+    flex: 0 1 calc(50% - 20px); /* Take half the width of the container, minus the gap */
+    box-sizing: border-box;
+}
+
+.test-info, .up_test_info {
+    flex-grow: 1;
+    font-weight:400;
+}
+
+.test h3, .up_test h3 {
+    margin: 0;
+    text-align: center;
+}
+
+.test p, .up_test p {
+    margin: 5px 0;
+    text-align: center;
+}
+
+.start-test-button {
+    background-color: #000000;
+    color: #ffffff;
+    font-size: medium;
+    font-weight: bold;
+    margin-right: auto;
+    border: none;
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 768px) {
+    .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        background-color: #333;
+        z-index: 1;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .burger-menu {
+        display: flex;
+    }
+
+    .up_test {
+        padding: 10px; /* Adjust padding for smaller screens */
+        margin-bottom: 10px; /* Adjust margin between items for smaller screens */
+    }
+
+    .up_test_info {
+        margin-top: 5px;
+    }
+
+    /* Use flex-wrap to display items in multiple rows */
+    .test-container {
+        flex-wrap: wrap;
+    }
+
+    .up_test {
+        width: calc(50% - 10px); /* Display in two columns, adjust as needed */
+        align-items: center;
+    }
+}

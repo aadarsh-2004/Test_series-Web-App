@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard.css') }}" />
+    <title>Modern Navigation Bar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" />
+        </div>
+        <div class="content">
+            <h1>Shree Samriddhi Classes</h1>
+        </div>
+        <div class="menu">
+            <a href="#" class="active">Home</a>
+            <a href="#">News</a>
+            <a href="{{ url_for('index') }}">Logout</a>
+        </div>
+        <div class="burger-menu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <header id="page-header" class="header-maxwidth d-print-none">
+        <div>
+            <h2 class="mb-3 mt-3">Welcome back, {{ username }}! 👋</h2>
+        </div>
+    </header>
+
+    <section class="active-tests gradient-border">
+        <h2>Active Tests</h2>
+        <div class="test-container">
+            {% for test in active_tests %}
+            <div class="test" data-start-date="{{ test[2] }}" data-test-id="{{ test[0] }}">
+                <div class="test-info">
+                    <h3>{{ test[1] }}</h3>
+                    <p>Date: {{ test[2] }}</p>
+                    <p>Topic: {{ test[3] }}</p>
+                </div>
+                <button class="start-test-button" onclick="startTest(event)">
+                    Start Test
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="upcoming-tests">
+        <h2>Upcoming Tests Calendar</h2>
+        <div class="test-container">
+            {% for test in upcoming_tests %}
+            <div class="up_test">
+                <div class="test-info">
+                    <h3>{{ test[1] }}</h3>
+                    <p>Date: {{ test[2] }}</p>
+                    <p>Topic: {{ test[3] }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <footer class="footer">
+        <h1 class="mainheading">Get in Touch</h1>
+        <h5 class="baseline">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi reprehenderit cumque ipsam provident,
+        </h5>
+
+        <i class="fa fa-instagram social-icon" style="font-size: 48px; color: rgb(255, 255, 255)"></i>
+        <i class="fa fa-address-book social-icon" style="font-size: 44px; color: rgb(255, 255, 255)"></i>
+        <i class="fa fa-facebook-square social-icon" style="font-size: 50px; color: rgb(255, 255, 255)"></i>
+    </footer>
+
+    <script>
+        function startTest(event) {
+            const currentDate = new Date().toISOString().split('T')[0]; // Get the current date in YYYY-MM-DD format
+
+            // Find the test element that was clicked
+            const testButton = event.target.closest('.test');
+            if (!testButton) return;
+            const allowedStartDate = testButton.getAttribute('data-start-date').trim();
+            const testId = testButton.getAttribute('data-test-id');
+
+            // Compare currentDate and allowedStartDate correctly
+            if (allowedStartDate === currentDate) {
+                window.location.href = '{{ url_for('testpaper', test_id=0) }}'.replace('0', testId);
+            } else {
+                alert('Test is not available now');
+            }
+        }
+
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
